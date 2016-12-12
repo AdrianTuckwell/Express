@@ -4,39 +4,40 @@ var app = express();
 var path = require('path');
 var planets = [{name: 'mars', size: 2093}, {name: 'earth', size: 3089}];
 
+// this is middleware that poits the folder
 app.use(express.static('client/build'));
 
-//GET
+//GET ----------------------------------------------------
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname + "/client/build/.index.html"));
 })
 
-//NEW
+//NEW ----------------------------------------------------
 app.get('/planets/new', function(req, res){
   res.send("NEW planets routes");
 })
 
-//CREATE
+//CREATE -------------------------------------------------
 app.post('/planets', function(req, res){
   res.send("CREATE planet route");
 })
 
-//SHOW
+//SHOW ---------------------------------------------------
 app.get('/planets/:id', function(req, res){
   res.json(planets[req.params.id]);
 })
 
-//EDIT
+//EDIT ---------------------------------------------------
 app.get('/planets/:id/edit', function(req, res){
   res.send("EDIT planet route")
 })
 
-//UPDATE
+//UPDATE -------------------------------------------------
 app.put('/planets/:id', function(req, res){
   res.send("UPDATE planet route")
 })
 
-//DELETE
+//DELETE -------------------------------------------------
 app.delete('/planets/:id', function(req, res){
   res.send("DELETE planet route, DESTROY planet")
 })
